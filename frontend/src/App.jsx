@@ -1,14 +1,10 @@
-import usePing from "./hooks/apis/queries/usePing";
+// import usePing from "./hooks/apis/queries/usePing";
+import { Router } from "./Router";
 
 import "./App.css";
 
 function App() {
-  const { isLoading, data } = usePing();
-  if (isLoading) {
-    return <>Loading...</>;
-  }
-
-  return <>Hello {data.message}</>;
+  return <Router />;
 }
 
 export default App;

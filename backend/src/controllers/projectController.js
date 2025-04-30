@@ -2,8 +2,12 @@ import util from "util";
 import { exec } from "child_process";
 import fs from "fs/promises";
 import uuid4 from "uuid4";
+import { config } from "../config/serverConfig.js";
 
 const execPromisified = util.promisify(exec);
+
+const { REACT_PROJECT_COMMAND } = config;
+
 export async function createProjectController(req, res) {
   const { stdout, stderr } = await execPromisified("ls");
 
@@ -15,7 +19,7 @@ export async function createProjectController(req, res) {
 
   // after these call the npm create vite command in the newly created project folder
 
-  await execPromisified("npm create vite@latest sandbox -- --template react", {
+  await execPromisified(REACT_PROJECT_COMMAND, {
     cwd: `./projects/${projectId}`,
   });
 
